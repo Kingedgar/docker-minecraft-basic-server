@@ -12,7 +12,7 @@ if [ -z "$(find ${SERVER_DIR} -name jre*)" ]; then
     if [ "${RUNTIME_NAME}" == "jre1.8.0_211" ]; then
     	echo "---Downloading and installing Runtime---"
 		cd ${SERVER_DIR}/runtime
-		wget -qi ${RUNTIME_NAME} https://github.com/ich777/docker-minecraft-basic-server/raw/master/runtime/8u211.tar.gz
+		wget -qi ${RUNTIME_NAME} https://github.com/Kingedgar/docker-minecraft-basic-server/raw/master/runtime/8u211.tar.gz
         tar --directory ${SERVER_DIR}/runtime -xvzf ${SERVER_DIR}/runtime/8u211.tar.gz
         rm -R ${SERVER_DIR}/runtime/8u211.tar.gz
     else
@@ -47,7 +47,7 @@ echo "---Preparing Server---"
 echo "---Checking for 'server.properties'---"
 if [ ! -f ${SERVER_DIR}/server.properties ]; then
     echo "---No 'server.properties' found, downloading...---"
-    wget -qi ${SERVER_DIR}/server.properties https://raw.githubusercontent.com/ich777/docker-minecraft-basic-server/master/config/server.properties
+    wget -qi ${SERVER_DIR}/server.properties https://raw.githubusercontent.com/Kingedgar/docker-minecraft-basic-server/master/config/server.properties
 else
     echo "---'server.properties' found..."
 fi
