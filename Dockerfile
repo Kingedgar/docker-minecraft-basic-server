@@ -1,9 +1,8 @@
 FROM ubuntu
 
-MAINTAINER ich777
+MAINTAINER kingedgar
 
-RUN apt-get update
-RUN apt-get -y install wget screen
+RUN apt-get update && apt-get -y install wget screen iproute2 iputils-ping net-tools
 
 ENV DATA_DIR="/serverdata"
 ENV SERVER_DIR="${DATA_DIR}/serverfiles"
@@ -14,12 +13,11 @@ ENV GAME_PORT=25565
 ENV XMX_SIZE=1024
 ENV XMS_SIZE=1024
 ENV ACCEPT_EULA="false"
-ENV UID=99
-ENV GID=100
+ENV UID=1000
+ENV GID=1002
 
-RUN mkdir $DATA_DIR
-RUN mkdir $SERVER_DIR
-RUN useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID minecraft
+RUN mkdir $DATA_DIR && mkdir $SERVER_DIR
+RUN groupadd --gid $GID minecraft && useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID minecraft
 RUN chown -R minecraft $DATA_DIR
 
 RUN ulimit -n 2048
