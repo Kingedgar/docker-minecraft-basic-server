@@ -18,7 +18,8 @@ ENV GID=1002
 
 RUN mkdir $DATA_DIR && mkdir $SERVER_DIR
 RUN groupadd --gid $GID minecraft && useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID minecraft
-RUN chown -R minecraft:minecraft $DATA_DIR
+RUN chown -R $UID:$GID $DATA_DIR
+RUN chmod -R 770 $DATA_DIR
 
 RUN ulimit -n 2048
 
